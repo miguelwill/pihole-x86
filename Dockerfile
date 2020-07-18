@@ -1,5 +1,5 @@
 #FROM pihole/debian-base:latest
-FROM debian:latest
+FROM i386/ubuntu:latest
 
 ENV ARCH x86
 ENV S6OVERLAY_RELEASE https://github.com/just-containers/s6-overlay/releases/download/v1.22.1.0/s6-overlay-x86.tar.gz
@@ -39,10 +39,10 @@ ENV FTL_CMD no-daemon
 ENV DNSMASQ_USER root
 
 # Set Version
-ENV VERSION v5.1.1
+ENV VERSION v5.1
 ENV PATH /opt/pihole:${PATH}
 
-LABEL image="miguelwill/pihole:v5.1.1_x86"
+LABEL image="miguelwill/pihole:v5.1_x86"
 LABEL maintainer="miguelwill@gmail.com"
 LABEL url="https://github.com/miguelwill/pihole-x86"
 

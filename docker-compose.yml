@@ -1,0 +1,49 @@
+version: "3"
+
+# https://github.com/pi-hole/docker-pi-hole/blob/master/README.md
+
+services:
+  pihole-test:
+    container_name: pihole-test
+    image: miguelwill/pihole-x86:latest
+    # For DHCP it is recommended to remove these ports and instead add: network_mode: "host"
+    ports:
+      - "53:53/tcp"
+      - "53:53/udp"
+#      - "67:67/udp"
+#      - "8180:80/tcp"
+#      - "9443:443/tcp"
+    environment:
+      TZ: 'America/Santiago'
+      # WEBPASSWORD: 'set a secure password here or it will be random'
+    # Volumes store your data between container upgrades
+    volumes:
+      - 'conf:/etc/pihole/'
+      - 'dnsmasq:/etc/dnsmasq.d/'
+      # run `touch ./var-log/pihole.log` first unless you like errors
+      - 'log:/var/log/'
+    dns:
+      - 1.1.1.1
+      - 1.0.0.1
+    # Recommended but not required (DHCP needs NET_ADMIN)
+    #   https://github.com/pi-hole/docker-pi-hole#note-on-capabilities
+    cap_add:
+      - NET_ADMIN
+    restart: unless-stopped
+    # labels:
+    #   - "traefik.enable=true"
+    #   - "traefik.http.routers.pihole-test.entrypoints=http"
+    #   - "traefik.http.routers.pihole-test.rule=Host(`pihole2.mig.cl`)"
+    #   - "traefik.http.services.pihole-test.loadbalancer.server.port=80"
+    #   - "traefik.docker.network=proxy"
+    networks:
+      - proxy
+
+networks:
+  proxy:
+    external: true
+
+volumes:
+  conf:
+  dnsmasq:
+  log:
