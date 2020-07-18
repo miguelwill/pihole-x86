@@ -38,6 +38,7 @@ ENV ServerIP 0.0.0.0
 ENV FTL_CMD no-daemon
 ENV DNSMASQ_USER root
 
+# Set Version
 ENV VERSION v5.1
 ENV PATH /opt/pihole:${PATH}
 
