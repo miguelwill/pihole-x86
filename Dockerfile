@@ -39,12 +39,12 @@ ENV FTL_CMD no-daemon
 ENV DNSMASQ_USER root
 
 # Set Version
-ENV VERSION v5.1
+ENV VERSION v5.1.1
 ENV PATH /opt/pihole:${PATH}
 
-LABEL image="miguelwill/pihole:v5.1_x86"
+LABEL image="miguelwill/pihole:v5.1.1_x86"
 LABEL maintainer="miguelwill@gmail.com"
-LABEL url="https://www.github.com/pi-hole/docker-pi-hole"
+LABEL url="https://github.com/miguelwill/pihole-x86"
 
 HEALTHCHECK CMD dig +norecurse +retry=0 @127.0.0.1 pi.hole || exit 1
 
